@@ -12,6 +12,9 @@ public class MyFirstProgramm {
 
        Rectangle r = new Rectangle(4,6);
        System.out.println("Площадь прямоугольника со сторонами " + r.a + " и " + r.b + " = " + area(r));
+
+       SegmentX x = new SegmentX(2,4);
+       System.out.println( "Длина отрезка по X c координатами X1:" + x.x1 + " и X2:" + x.x2 + " = " +area(x));
     }
 
     public static void hello(String somebody) {
@@ -25,4 +28,6 @@ public class MyFirstProgramm {
     public static double area (Rectangle r){
         return r.a * r.b;
     }
+
+    public static double area (SegmentX x){ return x.x2 - x.x1; }
 }
