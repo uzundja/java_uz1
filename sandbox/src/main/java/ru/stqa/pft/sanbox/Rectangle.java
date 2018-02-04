@@ -1,4 +1,4 @@
-package ru.stqa.uz1.sandbox;
+package ru.stqa.pft.sanbox;
 
 public class Rectangle {
   public double a;

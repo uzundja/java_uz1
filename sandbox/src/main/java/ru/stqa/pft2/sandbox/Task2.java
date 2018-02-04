@@ -1,4 +1,4 @@
-package ru.stqa.uz2.sandbox;
+package ru.stqa.pft2.sandbox;
 
 public class Task2 {
 
