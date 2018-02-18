@@ -1,6 +1,5 @@
 package ru.stqa.pft.addressbook.appmanager;
 
-import com.sun.javafx.binding.ExpressionHelperBase;
 import org.openqa.selenium.By;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import ru.stqa.pft.addressbook.model.GroupData;
@@ -42,11 +41,11 @@ public class GroupHelper extends HelperBase{
   public void selectGroup() {
     click(By.name("selected[]"));
   }
-
+  // Изменить Группу
   public void initGroupModification() {
     click(By.name("edit"));
   }
-
+  // Обновить Группу
   public void submitGroupModification() {
     click(By.name("update"));
   }
