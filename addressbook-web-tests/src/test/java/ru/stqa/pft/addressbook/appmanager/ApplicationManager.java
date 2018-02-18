@@ -1,14 +1,13 @@
-package ru.stqa.pft.addressbook;
+package ru.stqa.pft.addressbook.appmanager;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
+import ru.stqa.pft.addressbook.model.GroupData;
 
 import java.util.concurrent.TimeUnit;
 
-public class TestBase {
+public class ApplicationManager {
   FirefoxDriver wd;
 
   public static boolean isAlertPresent(FirefoxDriver wd) {
@@ -20,8 +19,7 @@ public class TestBase {
     }
   }
 
-  @BeforeMethod
-  public void setUp() throws Exception {
+  public void init() {
     wd = new FirefoxDriver();
     wd.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
     wd.get("http://localhost/addressbook/group.php");
@@ -37,16 +35,19 @@ public class TestBase {
     wd.findElement(By.name("pass")).sendKeys(password);
     wd.findElement(By.xpath("//form[@id='LoginForm']/input[3]")).click();
   }
-// Вернуться на страницу Групп
-  protected void returnToGroupPage() {
+
+  // Вернуться на страницу Групп
+  public void returnToGroupPage() {
     wd.findElement(By.linkText("group page")).click();
   }
-// Подтвердить создание Группы
-  protected void submitGroupCreation() {
+
+  // Подтвердить создание Группы
+  public void submitGroupCreation() {
     wd.findElement(By.name("submit")).click();
   }
-// Заполнение формы
-  protected void fillGroupForm(GroupData groupData) {
+
+  // Заполнение формы
+  public void fillGroupForm(GroupData groupData) {
     wd.findElement(By.name("group_name")).click();
     wd.findElement(By.name("group_name")).clear();
     wd.findElement(By.name("group_name")).sendKeys(groupData.getName());
@@ -57,25 +58,28 @@ public class TestBase {
     wd.findElement(By.name("group_footer")).clear();
     wd.findElement(By.name("group_footer")).sendKeys(groupData.getFooter());
   }
-// Создание нвоой групыы
-  protected void initGroupCreation() {
+
+  // Создание нвоой групыы
+  public void initGroupCreation() {
     wd.findElement(By.name("new")).click();
   }
-// Идти на страницу Групп
-  protected void gotoGroupPage() {
+
+  // Идти на страницу Групп
+  public void gotoGroupPage() {
     wd.findElement(By.linkText("groups")).click();
   }
 
-  @AfterMethod
-  public void tearDown() {
+  public void stop() {
     wd.quit();
   }
-// Удаление выбранных групп
-  protected void deleteSelectedGroups() {
+
+  // Удаление выбранных групп
+  public void deleteSelectedGroups() {
     wd.findElement(By.name("delete")).click();
   }
-// Выбрать группу
-  protected void selectGroup() {
+
+  // Выбрать группу
+  public void selectGroup() {
     wd.findElement(By.name("selected[]")).click();
   }
 }

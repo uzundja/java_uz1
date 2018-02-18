@@ -3,28 +3,35 @@
   <ID>JAVA</ID>
   <OriginalElement />
   <nodes>
-    <node x="0.0" y="345.0">ru.stqa.pft.addressbook.GroupCreationTests</node>
-    <node x="222.0" y="345.0">ru.stqa.pft.addressbook.GroupDeletionTests</node>
-    <node x="80.25" y="0.0">ru.stqa.pft.addressbook.TestBase</node>
+    <node x="400.25" y="-2.0">ru.stqa.pft.addressbook.appmanager.ApplicationManager</node>
+    <node x="222.0" y="492.0">ru.stqa.pft.addressbook.tests.GroupDeletionTests</node>
+    <node x="0.0" y="492.0">ru.stqa.pft.addressbook.tests.GroupCreationTests</node>
+    <node x="110.75" y="345.0">ru.stqa.pft.addressbook.tests.TestBase</node>
   </nodes>
   <notes />
   <edges>
-    <edge source="ru.stqa.pft.addressbook.GroupCreationTests" target="ru.stqa.pft.addressbook.TestBase">
-      <point x="0.0" y="-26.0" />
-      <point x="101.0" y="320.0" />
-      <point x="146.0" y="320.0" />
-      <point x="-65.75" y="147.5" />
-    </edge>
-    <edge source="ru.stqa.pft.addressbook.GroupDeletionTests" target="ru.stqa.pft.addressbook.TestBase">
-      <point x="0.0" y="-26.0" />
-      <point x="322.5" y="320.0" />
+    <edge source="ru.stqa.pft.addressbook.tests.TestBase" target="ru.stqa.pft.addressbook.appmanager.ApplicationManager">
+      <point x="50.5" y="-48.5" />
+      <point x="262.25" y="320.0" />
       <point x="277.5" y="320.0" />
       <point x="65.75" y="147.5" />
     </edge>
+    <edge source="ru.stqa.pft.addressbook.tests.GroupDeletionTests" target="ru.stqa.pft.addressbook.tests.TestBase">
+      <point x="0.0" y="-26.0" />
+      <point x="322.5" y="467.0" />
+      <point x="262.25" y="467.0" />
+      <point x="50.5" y="48.5" />
+    </edge>
+    <edge source="ru.stqa.pft.addressbook.tests.GroupCreationTests" target="ru.stqa.pft.addressbook.tests.TestBase">
+      <point x="0.0" y="-26.0" />
+      <point x="101.0" y="467.0" />
+      <point x="161.25" y="467.0" />
+      <point x="-50.5" y="48.5" />
+    </edge>
   </edges>
-  <settings layout="Hierarchic Group" zoom="1.0" x="164.5" y="55.0" />
+  <settings layout="Hierarchic Group" zoom="1.0" x="165.0" y="215.5" />
   <SelectedNodes>
-    <node>ru.stqa.pft.addressbook.GroupDeletionTests</node>
+    <node>ru.stqa.pft.addressbook.appmanager.ApplicationManager</node>
   </SelectedNodes>
   <Categories>
     <Category>Fields</Category>
