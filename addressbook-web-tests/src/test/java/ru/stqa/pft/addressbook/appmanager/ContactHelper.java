@@ -23,8 +23,15 @@ public class ContactHelper extends HelperBase {
   public void submitContact() {
     click(By.name("submit"));
   }
-
-  // Выбрать все контакты
+  // Нажать модифицировать контакт
+  public void modifyContact() {
+    click(By.xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img"));
+  }
+  // Update контакт
+  public void updateContact() {
+    click(By.xpath("//input[@name='update']"));
+  }
+    // Выбрать все контакты
   public void selectAllContact() {
     click(By.id("MassCB"));
   }

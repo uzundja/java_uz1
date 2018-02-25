@@ -33,7 +33,6 @@ public class ApplicationManager {
   public ContactHelper getContactHelper() {
     return contactHelper;
   }
-
   public NavigationHelper getNavigationHelper() {
     return navigationHelper;
   }
