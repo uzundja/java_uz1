@@ -1,8 +1,10 @@
 package ru.stqa.pft.addressbook.appmanager;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.Select;
+import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.ContactData;
 
 public class ContactHelper extends HelperBase {
@@ -11,13 +13,20 @@ public class ContactHelper extends HelperBase {
   }
 
   // Заполнить страницу контактов
-  public void fillContactForm(ContactData contactData) {
-    type(By.name("firstname"),contactData.getFirstname());
-    type(By.name("middlename"),contactData.getMiddlename());
+  public void fillContactForm(ContactData contactData, boolean creation) {
+    type(By.name("firstname"), contactData.getFirstname());
+    type(By.name("middlename"), contactData.getMiddlename());
     type(By.name("lastname"), contactData.getLastname());
-    type(By.name("nickname"),contactData.getNickname());
-    type(By.name("address"),contactData.getAddress());
-    type(By.name("email"),contactData.getEmail());
+    type(By.name("nickname"), contactData.getNickname());
+    type(By.name("address"), contactData.getAddress());
+    type(By.name("email"), contactData.getEmail());
+
+    // Метод который позволяет заполнять форму которая то содержит элемент group то нет
+    if (creation){
+      new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
+      }else{
+      Assert.assertFalse(isElementPresent(By.name("new_group")));
+    }
   }
 
   // Подтвердить создание контакта
