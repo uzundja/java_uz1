@@ -28,11 +28,19 @@ public class ContactHelper extends HelperBase {
       Assert.assertFalse(isElementPresent(By.name("new_group")));
     }
   }
-
+  // на страницу нового контакта
+  public void gotoContactPage() {
+    click(By.linkText("add new"));
+  }
   // Подтвердить создание контакта
   public void submitContact() {
     click(By.name("submit"));
   }
+  // Выбрать контакт
+  public void selectContact() {
+    click(By.name("selected[]"));
+  }
+
   // Нажать модифицировать контакт
   public void modifyContact() {
     click(By.xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img"));
@@ -55,5 +63,14 @@ public class ContactHelper extends HelperBase {
   }
 
 
+  public void createContact(ContactData contact, boolean b) {
+    gotoContactPage();
+    fillContactForm(contact,b);
+    submitContact();
+  }
+
+  public boolean isThereAContact() {
+    return isElementPresent(By.name("selected[]"));
+  }
 }
 

@@ -21,14 +21,6 @@ public class NavigationHelper extends HelperBase {
   }
 
 
-
-  // Идти на страницу Контактов
-  public void gotoCreateContact() {
-    click(By.linkText("add new"));
-  }
-
-
-
   // Открыть страницу Home
   public void gotoHome() {
     if (isElementPresent(By.id("maintable"))){
