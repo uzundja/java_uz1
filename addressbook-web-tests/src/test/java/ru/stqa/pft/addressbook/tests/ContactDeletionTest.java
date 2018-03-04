@@ -8,10 +8,10 @@ public class ContactDeletionTest extends TestBase {
 
   @Test
   public void testContactDeletion() {
-    int before = app.getContactHelper().getContactCount();
     if (! app.getContactHelper().isThereAContact()){
       app.getContactHelper().createContact(new ContactData("Антон","Викторович","Торбинский", "uzundja","Севастополь","uzunda@mail.ru","test1"),true);
     }
+    int before = app.getContactHelper().getContactCount();
     app.getContactHelper().selectContact(before-1);
     app.getContactHelper().deleteContact();
     app.getContactHelper().Accept();
