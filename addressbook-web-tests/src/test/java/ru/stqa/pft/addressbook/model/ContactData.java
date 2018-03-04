@@ -39,7 +39,7 @@ public class ContactData {
             '}';
   }
 
-  public ContactData(int id,String firstname, String middlename, String lastname, String nickname, String address, String email, String group) {
+  public ContactData(int id, String firstname, String middlename, String lastname, String nickname, String address, String email, String group) {
     this.id = id;
     this.firstname = firstname;
     this.middlename = middlename;
@@ -47,9 +47,19 @@ public class ContactData {
     this.nickname = nickname;
     this.address = address;
     this.email = email;
-
     this.group = group;
+  }
 
+
+  public ContactData(String firstname, String middlename, String lastname, String nickname, String address, String email, String group) {
+    this.id = Integer.parseInt(null);
+    this.firstname = firstname;
+    this.middlename = middlename;
+    this.lastname = lastname;
+    this.nickname = nickname;
+    this.address = address;
+    this.email = email;
+    this.group = group;
   }
 
 
