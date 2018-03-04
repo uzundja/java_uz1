@@ -29,6 +29,11 @@ public class ContactHelper extends HelperBase {
     }
   }
   // на страницу нового контакта
+  public void gotoHomePage() {
+    click(By.linkText("home"));
+  }
+
+  // на страницу нового контакта
   public void gotoContactPage() {
     click(By.linkText("add new"));
   }
@@ -37,8 +42,8 @@ public class ContactHelper extends HelperBase {
     click(By.name("submit"));
   }
   // Выбрать контакт
-  public void selectContact() {
-    click(By.name("selected[]"));
+  public void selectContact(int index) {
+    wd.findElements(By.name("selected[]")).get(index).click();
   }
 
   // Нажать модифицировать контакт
@@ -67,10 +72,15 @@ public class ContactHelper extends HelperBase {
     gotoContactPage();
     fillContactForm(contact,b);
     submitContact();
+    gotoHomePage();
   }
 
   public boolean isThereAContact() {
     return isElementPresent(By.name("selected[]"));
+  }
+
+  public int getContactCount() {
+    return wd.findElements(By.name("selected[]")).size();
   }
 }
 
