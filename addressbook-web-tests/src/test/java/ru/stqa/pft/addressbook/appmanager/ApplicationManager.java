@@ -26,7 +26,7 @@ public class ApplicationManager {
       wd = new FirefoxDriver();
     } else if (Objects.equals(browser, BrowserType.CHROME)) {
       wd = new ChromeDriver();
-    } else if (Objects.equals(browser, BrowserType.IE)){
+    } else if (Objects.equals(browser, BrowserType.IE)) {
       wd = new InternetExplorerDriver();
     }
     wd.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
@@ -42,13 +42,16 @@ public class ApplicationManager {
     wd.quit();
   }
 
-  public GroupHelper getGroupHelper() {
+  public GroupHelper group() {
     return groupHelper;
   }
+
   public ContactHelper getContactHelper() {
     return contactHelper;
   }
-  public NavigationHelper getNavigationHelper() {
+
+  public NavigationHelper goTo() {
     return navigationHelper;
   }
+
 }

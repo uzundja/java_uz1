@@ -27,12 +27,13 @@ public class ContactHelper extends HelperBase {
     type(By.name("email"), contactData.getEmail());
 
     // Метод который позволяет заполнять форму которая то содержит элемент group то нет
-    if (creation){
+    if (creation) {
       new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
-      }else{
+    } else {
       Assert.assertFalse(isElementPresent(By.name("new_group")));
     }
   }
+
   // на страницу нового контакта
   public void gotoHomePage() {
     click(By.linkText("home"));
@@ -42,10 +43,12 @@ public class ContactHelper extends HelperBase {
   public void gotoContactPage() {
     click(By.linkText("add new"));
   }
+
   // Подтвердить создание контакта
   public void submitContact() {
     click(By.name("submit"));
   }
+
   // Выбрать контакт
   public void selectContact(int index) {
     wd.findElements(By.name("selected[]")).get(index).click();
@@ -55,28 +58,41 @@ public class ContactHelper extends HelperBase {
   public void modifyContact() {
     click(By.xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img"));
   }
+
   // Update контакт
   public void updateContact() {
     click(By.xpath("//input[@name='update']"));
   }
-    // Выбрать все контакты
+
+  // Выбрать все контакты
   public void selectAllContact() {
     click(By.id("MassCB"));
   }
+
   // Удалить все контакты
   public void deleteContact() {
     click(By.xpath("//div[@id='content']/form[2]/div[2]/input"));
   }
+
   // Закрыть окно
   public void Accept() {
     wd.switchTo().alert().accept();
   }
 
-
+  // Создать контакт
   public void createContact(ContactData contact, boolean b) {
     gotoContactPage();
-    fillContactForm(contact,b);
+    fillContactForm(contact, b);
     submitContact();
+    gotoHomePage();
+  }
+
+  // Модифицировать контакт
+  public void ModifyContact(int index, ContactData contact) {
+    selectContact(index);
+    modifyContact();
+    fillContactForm(contact, false);
+    updateContact();
     gotoHomePage();
   }
 
@@ -91,11 +107,11 @@ public class ContactHelper extends HelperBase {
   public List<ContactData> getContactList() {
     List<ContactData> contacts = new ArrayList<ContactData>();
     List<WebElement> elements = wd.findElements(By.cssSelector("tr[name = 'entry']"));
-    for (WebElement element : elements){
+    for (WebElement element : elements) {
       String name = element.findElement(By.xpath(".//td[3]")).getText();
       String lastName = element.findElement(By.xpath(".//td[2]")).getText();
       int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
-      ContactData contact = new ContactData (id, name,null, lastName, null,null,null,null);
+      ContactData contact = new ContactData(id, name, null, lastName, null, null, null, null);
       contacts.add(contact);
     }
     return contacts;
