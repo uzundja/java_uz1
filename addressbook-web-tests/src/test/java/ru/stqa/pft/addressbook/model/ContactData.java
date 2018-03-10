@@ -28,7 +28,7 @@ public class ContactData {
   }
 
   public ContactData(String firstname, String middlename, String lastname, String nickname, String address, String email, String group) {
-    this.id = 0;
+    this.id = Integer.MAX_VALUE;
     this.firstname = firstname;
     this.middlename = middlename;
     this.lastname = lastname;
