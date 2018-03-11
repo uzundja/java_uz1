@@ -8,7 +8,9 @@ import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.ContactData;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class ContactHelper extends HelperBase {
   public ContactHelper(WebDriver wd) {
@@ -48,23 +50,18 @@ public class ContactHelper extends HelperBase {
   }
 
   // Выбрать контакт
-  public void selectContact(int index) {
-    wd.findElements(By.name("selected[]")).get(index).click();
+  public void selectContactById(int id) {
+    wd.findElement(By.cssSelector("input[value='" + id + "']")).click();
   }
 
   // Нажать модифицировать контакт
-  public void modifyContact(int index) {
-    wd.findElements(By.xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img")).get(index).click();
+  public void modifyContactById(int id) {
+    wd.findElement(By.xpath(".//*[@id='maintable']/tbody//td[8]/a[@href='edit.php?id="+ id +"']/img")).click();
   }
 
   // Update контакт
   public void updateContact() {
     click(By.xpath("//input[@name='update']"));
-  }
-
-  // Выбрать все контакты
-  public void selectAllContact() {
-    click(By.id("MassCB"));
   }
 
   // Удалить все контакты
@@ -86,16 +83,16 @@ public class ContactHelper extends HelperBase {
   }
 
   // Модифицировать контакт
-  public void modify(int index, ContactData contact) {
-    modifyContact(index);
+  public void modify(ContactData contact) {
+    modifyContactById(contact.getId());
     fillContactForm(contact, false);
     updateContact();
     homepage();
   }
 
   // Удалить контакт
-  public void delete(int index) {
-    selectContact(index);
+  public void delete(ContactData contact) {
+    selectContactById(contact.getId());
     deleteContact();
     Accept();
     homepage();
@@ -104,13 +101,11 @@ public class ContactHelper extends HelperBase {
   public boolean isThereAContact() {
     return isElementPresent(By.name("selected[]"));
   }
-
   public int getContactCount() {
     return wd.findElements(By.name("selected[]")).size();
   }
-
-  public List<ContactData> list() {
-    List<ContactData> contacts = new ArrayList<ContactData>();
+  public Set<ContactData> all() {
+    Set<ContactData> contacts = new HashSet<ContactData>();
     List<WebElement> elements = wd.findElements(By.cssSelector("tr[name = 'entry']"));
     for (WebElement element : elements) {
       String name = element.findElement(By.xpath(".//td[3]")).getText();
