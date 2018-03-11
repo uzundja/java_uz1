@@ -1,13 +1,11 @@
 package ru.stqa.pft.addressbook.appmanager;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.ContactData;
-import ru.stqa.pft.addressbook.model.GroupData;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,7 +33,7 @@ public class ContactHelper extends HelperBase {
   }
 
   // на страницу нового контакта
-  public void gotoHomePage() {
+  public void homepage() {
     click(By.linkText("home"));
   }
 
@@ -80,20 +78,28 @@ public class ContactHelper extends HelperBase {
   }
 
   // Создать контакт
-  public void createContact(ContactData contact, boolean b) {
+  public void create(ContactData contact, boolean b) {
     gotoContactPage();
     fillContactForm(contact, b);
     submitContact();
-    gotoHomePage();
+    homepage();
   }
 
   // Модифицировать контакт
-  public void ModifyContact(int index, ContactData contact) {
+  public void modify(int index, ContactData contact) {
     selectContact(index);
     modifyContact();
     fillContactForm(contact, false);
     updateContact();
-    gotoHomePage();
+    homepage();
+  }
+
+  // Удалить контакт
+  public void delete(int index) {
+    selectContact(index);
+    deleteContact();
+    Accept();
+    homepage();
   }
 
   public boolean isThereAContact() {
@@ -104,7 +110,7 @@ public class ContactHelper extends HelperBase {
     return wd.findElements(By.name("selected[]")).size();
   }
 
-  public List<ContactData> getContactList() {
+  public List<ContactData> list() {
     List<ContactData> contacts = new ArrayList<ContactData>();
     List<WebElement> elements = wd.findElements(By.cssSelector("tr[name = 'entry']"));
     for (WebElement element : elements) {
