@@ -23,9 +23,16 @@ public class ContactModificationTests extends TestBase{
   public void testContactModifications(){
     List<ContactData> before = app.contact().list();
     int index = before.size() -1;
-    ContactData contact = new ContactData().withId(before.get(index).getId()).withFirstname("Антон1").withMiddlename("Викторович1")
-            .withLastname("Торбинский1").withNickname("uzundja").withAddress("Севастополь").withEmail("uzunda@mail.ru");
+    ContactData contact = new ContactData()
+            .withId(before.get(index).getId())
+            .withFirstname("Антон1")
+            .withMiddlename("Викторович1")
+            .withLastname("Торбинский1")
+            .withNickname("uzundja")
+            .withAddress("Севастополь")
+            .withEmail("uzunda@mail.ru");
     app.contact().modify(index, contact);
+
     List<ContactData> after= app.contact().list();
     Assert.assertEquals(after.size(),before.size());
     before.remove (index);

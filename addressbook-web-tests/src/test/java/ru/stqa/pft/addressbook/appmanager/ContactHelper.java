@@ -53,8 +53,8 @@ public class ContactHelper extends HelperBase {
   }
 
   // Нажать модифицировать контакт
-  public void modifyContact() {
-    click(By.xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img"));
+  public void modifyContact(int index) {
+    wd.findElements(By.xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img")).get(index).click();
   }
 
   // Update контакт
@@ -87,8 +87,7 @@ public class ContactHelper extends HelperBase {
 
   // Модифицировать контакт
   public void modify(int index, ContactData contact) {
-    selectContact(index);
-    modifyContact();
+    modifyContact(index);
     fillContactForm(contact, false);
     updateContact();
     homepage();
