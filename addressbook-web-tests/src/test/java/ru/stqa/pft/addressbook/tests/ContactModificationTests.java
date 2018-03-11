@@ -13,17 +13,18 @@ public class ContactModificationTests extends TestBase{
   @BeforeMethod
   public void ensurePrecondition() {
     if (app.contact().list().size() == 0){
-      app.contact().create(new ContactData("Антон","Викторович","Торбинский", "uzundja","Севастополь","uzunda@mail.ru","test1"),true);
+      app.contact().create(new ContactData().withFirstname("Антон").withMiddlename("Викторович").withLastname("Торбинский").withNickname("uzundja")
+              .withAddress("Севстополь").withEmail("uzundja@mail.ru").withGroup("test1"),true);
     }
     app.contact().homepage();
   }
-
 
   @Test (enabled = true)
   public void testContactModifications(){
     List<ContactData> before = app.contact().list();
     int index = before.size() -1;
-    ContactData contact = new ContactData(before.get(before.size() - 1).getId(),"Антон1","Викторович1","Торбинский1", "uzundja","Севастополь","uzunda@mail.ru",null);
+    ContactData contact = new ContactData().withId(before.get(index).getId()).withFirstname("Антон1").withMiddlename("Викторович1")
+            .withLastname("Торбинский1").withNickname("uzundja").withAddress("Севастополь").withEmail("uzunda@mail.ru");
     app.contact().modify(index, contact);
     List<ContactData> after= app.contact().list();
     Assert.assertEquals(after.size(),before.size());
